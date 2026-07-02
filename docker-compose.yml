@@ -1,16 +1,18 @@
+version: "3.9"
+
 services:
   api:
     build: .
-    container_name: umba-fraud-api
+    container_name: umba-api
     ports:
       - "8000:8000"
     command: uvicorn API.app:app --host 0.0.0.0 --port 8000
 
   dashboard:
     build: .
-    container_name: umba-fraud-dashboard
+    container_name: umba-dashboard
     ports:
       - "8501:8501"
-    command: streamlit run dashboard/app.py --server.address 0.0.0.0 --server.port 8501
+    command: streamlit run dashboard/dashboard.py --server.address 0.0.0.0 --server.port 8501
     depends_on:
       - api
